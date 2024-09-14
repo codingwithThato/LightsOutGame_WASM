@@ -1,0 +1,84 @@
+@page "/whackamole"
+@using System.Timers
+
+<h3>Whack-a-Mole Game</h3>
+<div class="game-board">
+    @for (int row = 0; row < 3; row++)
+    {
+        <div class="row">
+            @for (int col = 0; col < 3; col++)
+            {
+                <button class="cell @(board[row, col] ? "mole" : "empty")" @onclick="() => WhackMole(row, col)">
+                    @(board[row, col] ? "Mole" : "")
+                </button>
+            }
+        </div>
+    }
+</div>
+
+<p>Score: @score</p>
+<button @onclick="StartGame" disabled="@isGameActive">Start Game</button>
+
+@code {
+    private bool[,] board;
+    private int score = 0;
+    private bool isGameActive = false;
+    private Timer timer;
+
+    protected override void OnInitialized()
+    {
+        // Ensure the array is initialized correctly
+        board = new bool[3, 3];
+        timer = new Timer(1000);
+        timer.Elapsed += (sender, e) => ShowRandomMole();
+    }
+
+    private void StartGame()
+    {
+        isGameActive = true;
+        score = 0;
+        ResetBoard();  // Properly initializes the board before starting
+        timer.Start();
+    }
+
+    private void ResetBoard()
+    {
+        // Ensure all board values are set correctly at the start
+        for (int r = 0; r < 3; r++)
+        {
+            for (int c = 0; c < 3; c++)
+            {
+                board[r, c] = false;  // Ensure all moles are hidden initially
+            }
+        }
+    }
+
+    private void ShowRandomMole()
+    {
+        var random = new Random();
+        var row = random.Next(0, 3);
+        var col = random.Next(0, 3);
+
+        // Clear previous moles
+        ResetBoard();
+
+        // Set a new mole
+        board[row, col] = true;
+
+        InvokeAsync(StateHasChanged); // Ensures UI update from non-UI thread
+    }
+
+    private void WhackMole(int row, int col)
+    {
+        // Check if the indices are within bounds before accessing the array
+        @* if (row >= 0 && row < 3 && col >= 0 && col < 3)
+        { *@
+            if (board[row, col])
+            {
+                score++;
+                board[row, col] = false; // Hide the mole after whacking
+                StateHasChanged();
+            }
+        @* } *@
+    }
+}

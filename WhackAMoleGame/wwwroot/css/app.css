@@ -101,3 +101,33 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+.game-board {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 70px);
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    width: 70px;
+    height: 70px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #333;
+    transition: background-color 0.3s;
+}
+
+.mole {
+    background-color: green;
+    color: white;
+}
+
+.empty {
+    background-color: lightgrey;
+}
+
