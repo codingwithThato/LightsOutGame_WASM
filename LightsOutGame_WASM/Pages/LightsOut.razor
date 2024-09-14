@@ -1,0 +1,60 @@
+@page "/lightsout"
+@using System.Linq
+
+<h3>Lights Out Game</h3>
+<p>Turn off all the lights in the grid! Click a cell to toggle it and its neighbors.</p>
+<div class="game-board">
+    @for (int row = 0; row < 5; row++)
+    {
+        <div class="row">
+            @for (int col = 0; col < 5; col++)
+            {
+                <button class="cell @(board[row, col] ? "on" : "off")" @onclick="() => ToggleCell(row, col)">
+                    @((row * 5) + col + 1)
+                </button>
+            }
+        </div>
+    }
+</div>
+
+<button @onclick="ResetGame">Reset Game</button>
+
+@code {
+    private bool[,] board = new bool[5, 5];
+
+    protected override void OnInitialized()
+    {
+        ResetGame();
+    }
+
+    private void ToggleCell(int row, int col)
+    {
+        Toggle(row, col);
+        Toggle(row - 1, col); // Up
+        Toggle(row + 1, col); // Down
+        Toggle(row, col - 1); // Left
+        Toggle(row, col + 1); // Right
+        StateHasChanged(); // Ensure the UI is updated
+    }
+
+    private void Toggle(int row, int col)
+    {
+        if (row >= 0 && row < 5 && col >= 0 && col < 5)
+        {
+            board[row, col] = !board[row, col];
+        }
+    }
+
+    private void ResetGame()
+    {
+        var random = new Random();
+        for (int row = 0; row < 5; row++)
+        {
+            for (int col = 0; col < 5; col++)
+            {
+                board[row, col] = random.Next(0, 2) == 0;
+            }
+        }
+        StateHasChanged(); // Ensure the UI is updated after reset
+    }
+}
