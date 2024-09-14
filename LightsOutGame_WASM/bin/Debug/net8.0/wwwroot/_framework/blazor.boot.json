@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "LightsOutGame_WASM",
   "resources": {
-    "hash": "sha256-9UEv56HxAp0pWr1Q597BnZ8BHSEJlRDV+wRJMPcNL/c=",
+    "hash": "sha256-mmXyQDWiY3i6cyUp8Ah8bjwS3uLFLY80oh04wshXNXw=",
     "jsModuleNative": {
       "dotnet.native.8.0.8.ntz2ou9579.js": "sha256-juC5sA7gHTLXFEhAKgdM2/RavswpwCtDfjYGsAz2FXg="
     },
@@ -208,10 +208,10 @@
       "mscorlib.wasm": "sha256-Gz8PyW2/fwihe5ul81OwmRUrU71r+KtbyRw6xlOGD+Q=",
       "netstandard.wasm": "sha256-jMTqIQzoDS810lyhZpMO5eEC36EzntXqSVn+2qwkOMQ=",
       "System.Private.CoreLib.wasm": "sha256-NFj5WE5VLP2LptZIRJCUIc1AMk06FmxpsSILfPISwAw=",
-      "LightsOutGame_WASM.wasm": "sha256-1btSzWZBOxBHIrQWDfacdIA8Z7xCWG5wp8Jb/HDZEuw="
+      "LightsOutGame_WASM.wasm": "sha256-L7zPBWAx3d0w50p5Wld4+e5R94YjInjLE3tkGMje310="
     },
     "pdb": {
-      "LightsOutGame_WASM.pdb": "sha256-1EnDEeedSsp75h5bQD8U/Z+msiyEP2Bm4TnbYWqnT7k="
+      "LightsOutGame_WASM.pdb": "sha256-mxmF5y/+mbzgJrSexzr3MvVlDEJyRLgOMHz3sGVboM8="
     }
   },
   "cacheBootResources": true,

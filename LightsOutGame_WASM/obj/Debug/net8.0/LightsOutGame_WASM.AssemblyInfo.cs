@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LightsOutGame_WASM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c46829266560e9095cd9314279e8cf8d5a1d3555")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+928413f6d09838811e5332f4fb336a2ad9a51110")]
 [assembly: System.Reflection.AssemblyProductAttribute("LightsOutGame_WASM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LightsOutGame_WASM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

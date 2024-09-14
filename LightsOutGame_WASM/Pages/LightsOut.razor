@@ -1,90 +1,60 @@
 @page "/lightsout"
-@inject IJSRuntime JS
+@using System.Linq
 
-<h3>My Lights Out Game</h3>
-
+<h3>Lights Out Game</h3>
 <p>Turn off all the lights in the grid! Click a cell to toggle it and its neighbors.</p>
-
-<div class="grid">
-    @for (int row = 0; row < gridSize; row++)
+<div class="game-board">
+    @for (int row = 0; row < 5; row++)
     {
         <div class="row">
-            @for (int col = 0; col < gridSize; col++)
+            @for (int col = 0; col < 5; col++)
             {
-                <button class="cell @(grid[row, col] ? "on" : "off")" @onclick="() => ToggleCell(row, col)">
-                    @(grid[row, col] ? "On" : "Off")
+                <button class="cell @(board[row, col] ? "on" : "off")" @onclick="() => ToggleCell(row, col)">
+                    @((row * 5) + col + 1)
                 </button>
             }
         </div>
     }
 </div>
 
-<p>@(IsGameWon() ? "Congratulations, you won!" : "")</p>
-
-<button @onclick="ResetGame" class="btn btn-primary">Reset Game</button>
+<button @onclick="ResetGame">Reset Game</button>
 
 @code {
-    private int gridSize = 5;
-    private bool[,] grid;
+    private bool[,] board = new bool[5, 5];
 
     protected override void OnInitialized()
     {
-        InitializeGrid();
+        ResetGame();
     }
 
-    private void InitializeGrid()
+    private void ToggleCell(int row, int col)
     {
-        grid = new bool[gridSize, gridSize];
-
-        // Randomly turn some lights on
-        var random = new Random();
-        for (int row = 0; row < gridSize; row++)
-        {
-            for (int col = 0; col < gridSize; col++)
-            {
-                grid[row, col] = random.Next(0, 2) == 0;
-            }
-        }
-    }
-
-    private async void ToggleCell(int row, int col)
-    {
-        // Toggle the clicked cell and its adjacent cells
         Toggle(row, col);
         Toggle(row - 1, col); // Up
         Toggle(row + 1, col); // Down
         Toggle(row, col - 1); // Left
         Toggle(row, col + 1); // Right
-        await LogToConsole($"Toggled cell at ({row}, {col})");
-        StateHasChanged();
+        StateHasChanged(); // Ensure the UI is updated
     }
 
     private void Toggle(int row, int col)
     {
-        if (row >= 0 && row < gridSize && col >= 0 && col < gridSize)
+        if (row >= 0 && row < 5 && col >= 0 && col < 5)
         {
-            grid[row, col] = !grid[row, col];
+            board[row, col] = !board[row, col];
         }
-        
-    }
-
-    private bool IsGameWon()
-    {
-        foreach (var cell in grid)
-        {
-            if (cell)
-                return false;
-        }
-        return true;
     }
 
     private void ResetGame()
     {
-        InitializeGrid();
-    }
-
-    private async Task LogToConsole(string message)
-    {
-        await JS.InvokeVoidAsync("console.log", message);
+        var random = new Random();
+        for (int row = 0; row < 5; row++)
+        {
+            for (int col = 0; col < 5; col++)
+            {
+                board[row, col] = random.Next(0, 2) == 0;
+            }
+        }
+        StateHasChanged(); // Ensure the UI is updated after reset
     }
 }
