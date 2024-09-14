@@ -1,0 +1,81 @@
+@page "/lightsout"
+
+<h3>My Lights Out Game</h3>
+
+<p>Turn off all the lights in the grid! Click a cell to toggle it and its neighbors.</p>
+
+<div class="grid">
+    @for (int row = 0; row < gridSize; row++)
+    {
+        <div class="row">
+            @for (int col = 0; col < gridSize; col++)
+            {
+                <button class="cell @(grid[row, col] ? "on" : "off")" @onclick="() => ToggleCell(row, col)">
+                    @(grid[row, col] ? "On" : "Off")
+                </button>
+            }
+        </div>
+    }
+</div>
+
+<p>@(IsGameWon() ? "Congratulations, you won!" : "")</p>
+
+<button @onclick="ResetGame" class="btn btn-primary">Reset Game</button>
+
+@code {
+    private int gridSize = 5;
+    private bool[,] grid;
+
+    protected override void OnInitialized()
+    {
+        InitializeGrid();
+    }
+
+    private void InitializeGrid()
+    {
+        grid = new bool[gridSize, gridSize];
+
+        // Randomly turn some lights on
+        var random = new Random();
+        for (int row = 0; row < gridSize; row++)
+        {
+            for (int col = 0; col < gridSize; col++)
+            {
+                grid[row, col] = random.Next(0, 2) == 0;
+            }
+        }
+    }
+
+    private void ToggleCell(int row, int col)
+    {
+        // Toggle the clicked cell and its adjacent cells
+        Toggle(row, col);
+        Toggle(row - 1, col); // Up
+        Toggle(row + 1, col); // Down
+        Toggle(row, col - 1); // Left
+        Toggle(row, col + 1); // Right
+    }
+
+    private void Toggle(int row, int col)
+    {
+        if (row >= 0 && row < gridSize && col >= 0 && col < gridSize)
+        {
+            grid[row, col] = !grid[row, col];
+        }
+    }
+
+    private bool IsGameWon()
+    {
+        foreach (var cell in grid)
+        {
+            if (cell)
+                return false;
+        }
+        return true;
+    }
+
+    private void ResetGame()
+    {
+        InitializeGrid();
+    }
+}
