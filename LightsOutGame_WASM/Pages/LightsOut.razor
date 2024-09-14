@@ -1,4 +1,5 @@
 @page "/lightsout"
+@inject IJSRuntime JS
 
 <h3>My Lights Out Game</h3>
 
@@ -46,7 +47,7 @@
         }
     }
 
-    private void ToggleCell(int row, int col)
+    private async void ToggleCell(int row, int col)
     {
         // Toggle the clicked cell and its adjacent cells
         Toggle(row, col);
@@ -54,6 +55,8 @@
         Toggle(row + 1, col); // Down
         Toggle(row, col - 1); // Left
         Toggle(row, col + 1); // Right
+        await LogToConsole($"Toggled cell at ({row}, {col})");
+        StateHasChanged();
     }
 
     private void Toggle(int row, int col)
@@ -62,6 +65,7 @@
         {
             grid[row, col] = !grid[row, col];
         }
+        
     }
 
     private bool IsGameWon()
@@ -77,5 +81,10 @@
     private void ResetGame()
     {
         InitializeGrid();
+    }
+
+    private async Task LogToConsole(string message)
+    {
+        await JS.InvokeVoidAsync("console.log", message);
     }
 }

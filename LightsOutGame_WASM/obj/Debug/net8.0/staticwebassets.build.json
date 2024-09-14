@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9RsMjxT29PG97wLi5+7ADpqp4jUQ4OTDZaliB081Oxs=",
+  "Hash": "xJZXB+f2EA3gG8M5+D01qUy+ADQLn/IESdvggHZ/uyI=",
   "Source": "LightsOutGame_WASM",
   "BasePath": "/",
   "Mode": "Root",
@@ -7938,6 +7938,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/sample-data/weather.json"
+    },
+    {
+      "Identity": "/Users/thatokalagobe/Desktop/final year modules/IMY 320 2024/individual assignment/LightsOutGame_WASM/wwwroot/scripts.js",
+      "SourceId": "LightsOutGame_WASM",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/thatokalagobe/Desktop/final year modules/IMY 320 2024/individual assignment/LightsOutGame_WASM/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "scripts.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/scripts.js"
     }
   ]
 }

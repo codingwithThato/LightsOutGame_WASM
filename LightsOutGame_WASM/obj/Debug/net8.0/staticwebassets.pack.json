@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets/sample-data/weather.json"
     },
     {
+      "Id": "/Users/thatokalagobe/Desktop/final year modules/IMY 320 2024/individual assignment/LightsOutGame_WASM/wwwroot/scripts.js",
+      "PackagePath": "staticwebassets/scripts.js"
+    },
+    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.LightsOutGame_WASM.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
